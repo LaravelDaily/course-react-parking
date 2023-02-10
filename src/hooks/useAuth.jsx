@@ -4,10 +4,12 @@ import { route } from '@/routes'
 
 export function useAuth() {
   const [errors, setErrors] = useState({})
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   async function register(data) {
     setErrors({})
+    setLoading(true)
 
     return axios.post('auth/register', data)
       .then(() => {
@@ -18,7 +20,8 @@ export function useAuth() {
           setErrors(error.response.data.errors)
         }
       })
+      .finally(() => setLoading(false))
   }
 
-  return { register, errors }
+  return { register, errors, loading }
 }
