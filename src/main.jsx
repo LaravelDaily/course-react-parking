@@ -5,6 +5,7 @@ import axios from 'axios'
 import App from '@/App'
 import Home from '@/views/Home'
 import Register from '@/views/auth/Register'
+import Login from '@/views/auth/Login'
 import VehiclesList from '@/views/vehicles/VehiclesList'
 import '@/assets/main.css'
 import { route } from '@/routes'
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path={ route('home') } element={<App />}>
           <Route index element={<Home />} />
           <Route path={ route('register') } element={<Register />} />
+          <Route path={ route('login') } element={<Login />} />
           <Route path={ route('vehicles.index') } element={<VehiclesList />} />
         </Route>
       </Routes>
