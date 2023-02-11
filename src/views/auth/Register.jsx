@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
+import ValidationError from '@/components/ValidationError'
 
 function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
-  const { register } = useAuth()
+  const { register, errors } = useAuth()
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -34,6 +35,7 @@ function Register() {
             className="form-input"
             autoComplete="name"
           />
+          <ValidationError errors={ errors } field="name" />
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -47,6 +49,7 @@ function Register() {
             className="form-input"
             autoComplete="email"
           />
+          <ValidationError errors={ errors } field="email" />
         </div>
 
         <div className="flex flex-col gap-2 mb-4">
@@ -60,6 +63,7 @@ function Register() {
             className="form-input"
             autoComplete="new-password"
           />
+          <ValidationError errors={ errors } field="password" />
         </div>
 
         <div className="flex flex-col gap-2">
