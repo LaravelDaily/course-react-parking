@@ -3,6 +3,7 @@ const routeNames = {
   'register': '/register',
   'login': '/login',
   'vehicles.index': '/vehicles',
+  'parkings.active': '/parkings/active',
 }
 
 function route(name, params = {}) {
