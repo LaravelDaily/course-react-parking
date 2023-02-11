@@ -2,6 +2,7 @@ const routeNames = {
   'home': '/',
   'register': '/register',
   'login': '/login',
+  'profile.edit': '/profile',
   'vehicles.index': '/vehicles',
   'parkings.active': '/parkings/active',
 }
