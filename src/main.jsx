@@ -12,6 +12,7 @@ import VehiclesList from '@/views/vehicles/VehiclesList'
 import CreateVehicle from '@/views/vehicles/CreateVehicle'
 import EditVehicle from '@/views/vehicles/EditVehicle'
 import ActiveParkings from '@/views/parkings/ActiveParkings'
+import OrderParking from '@/views/parkings/OrderParking'
 import '@/assets/main.css'
 import { route } from '@/routes'
 
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path={ route('vehicles.create') } element={<CreateVehicle />} />
           <Route path={ route('vehicles.edit') } element={<EditVehicle />} />
           <Route path={ route('parkings.active') } element={<ActiveParkings />} />
+          <Route path={ route('parkings.create') } element={<OrderParking />} />
         </Route>
       </Routes>
     </BrowserRouter>
