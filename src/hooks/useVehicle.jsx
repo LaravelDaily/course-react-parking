@@ -53,9 +53,14 @@ export function useVehicle(id = null) {
       .finally(() => setLoading(false))
   }
 
+  async function destroyVehicle(vehicle) {
+    return axios.delete(`vehicles/${vehicle.id}`)
+  }
+
   return {
     vehicle: { data, setData, errors, loading },
     createVehicle,
     updateVehicle,
+    destroyVehicle,
   }
 }
