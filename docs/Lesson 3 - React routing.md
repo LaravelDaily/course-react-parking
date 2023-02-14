@@ -12,7 +12,7 @@ In this lesson let's set up react router to be able to navigate between views.
 npm install react-router-dom --save
 ```
 
-2. After successful installation let's prepare our first components we are going to navigate between. Create new file `src/views/Home.jsx` with the following content.
+2. After successful installation let's prepare the first components we are going to navigate between. Create a new file `src/views/Home.jsx` with the following content.
 
 ```jsx
 function Home() {
@@ -32,7 +32,7 @@ function Register() {
 export default Register
 ```
 
-4. Update `src/main.jsx` file to this.
+4. Update the `src/main.jsx` file to this.
 
 ```jsx
 import React from 'react'
@@ -57,13 +57,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-Here we import `BrowserRouter`, `Routes` and `Route` components from `react-router-dom`.
+Here we import `BrowserRouter`, `Routes`, and `Route` components from `react-router-dom`.
 
-Whole app is wrapped in `<BrowserRoute>`. It stores the current location in the browser's address bar using clean URLs and navigates using the browser's built-in history stack.
+The whole app is wrapped in `<BrowserRoute>`. It stores the current location in the browser's address bar using clean URLs and navigates using the browser's built-in history stack.
 
-`<Routes>` will match a set of child routes from the current location. Whenever the location changes, `<Routes>` looks through all its child routes to find the best match and renders that branch of the UI. `<Route>` elements may be nested to indicate nested UI, which also correspond to nested URL paths. Parent routes render their child routes by rendering an `<Outlet>`.
+`<Routes>` will match a set of child routes from the current location. Whenever the location changes, `<Routes>` look through all its child routes to find the best match and renders that branch of the UI. `<Route>` elements may be nested to indicate nested UI, which also corresponds to nested URL paths. Parent routes render their child routes by rendering an `<Outlet>`.
 
-5. Update `src/App.jsx` file.
+5. Update the `src/App.jsx` file.
 
 ```jsx
 import { Outlet, NavLink } from 'react-router-dom'
@@ -105,9 +105,9 @@ function App() {
 export default App
 ```
 
-In place where `<Outlet />` is defined will be rendered our `<Home>` and `<Register>` component when route defined matches them.
+In a place where `<Outlet />` is defined will be rendered our `<Home>` and `<Register>` components when the route defined matches them.
 
-A `<NavLink>` is a special kind of React's regular `<Link>` that knows whether or not it is "active". This is useful when building a navigation menu where you'd like to show which of them is currently selected. It also provides useful context for assistive technology like screen readers. You can pass a function to either `style` or `className` that will allow you to customize the inline styling or the class string based on the component's active state. You can also pass a function as children to customize the content of the `<NavLink>` component based on their active state, specially useful to change styles on internal elements.
+A `<NavLink>` is a special kind of React's regular `<Link>` that knows whether or not it is "active". This is useful when building a navigation menu where you'd like to show which of them is currently selected. It also provides useful context for assistive technology like screen readers. You can pass a function to either `style` or `className` that will allow you to customize the inline styling or the class string based on the component's active state. You can also pass a function as children to customize the content of the `<NavLink>` component based on their active state, especially useful to change styles on internal elements.
 
 It looks like this.
 
@@ -119,6 +119,6 @@ It looks like this.
 
 If the `end` prop is used like in our case, it will ensure this component isn't matched as "active" when its descendant paths are matched. For example, to render a link that is only active at the website root and not any other URLs.
 
-Now you should have everything working and able to navigate between newly created home and register pages.
+Now you should have everything working and able to navigate between the newly created home and register pages.
 
-Let's move to next lesson.
+Let's move to the next lesson.

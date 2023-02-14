@@ -25,9 +25,9 @@ Our objective in this lesson is to display form errors on the client side.
 
 Considering that we are going to have more forms in the future it is a good idea to have a component where we can pass errors object and a field name to display particular error messages under the specific field.
 
-Now let's extend our `useAuth` hook `src/hooks/useAuth.jsx` by adding new `errors` state, this is where we are going to store the errors object returned from the backend.
+Now let's extend our `useAuth` hook `src/hooks/useAuth.jsx` by adding a new `errors` state, this is where we are going to store the errors object returned from the backend.
 
-`src/hooks/useAuth.jsx` file should look like this.
+The `src/hooks/useAuth.jsx` file should look like this.
 
 ```jsx
 import { useState } from 'react'
@@ -56,13 +56,13 @@ export function useAuth() {
 }
 ```
 
-When server returns error code 422 Unprocessable entity we set errors state with the values server returned in the `catch` clause.
+When the server returns error code 422 Unprocessable entity we set the errors state with the values the server returned in the `catch` clause.
 
 ```jsx
 setErrors(error.response.data.errors)
 ```
 
-On every new submission, we want to reset `errors` state, this is done with `setErrors({})` line.
+On every new submission, we want to reset the `errors` state, this is done with the `setErrors({})` line.
 
 2. The hook has been set up and now it is a lot easier to implement the component to display error messages in form.
 
@@ -90,7 +90,7 @@ ValidationError.propTypes = {
 export default ValidationError
 ```
 
-Like we did with `NamedLink` component, we define properties `errors` and `field` that component will accept and display errors for field where object key matches.
+Like we did with the `NamedLink` component, we define properties `errors` and `field` that component will accept and display errors for a field where the object key matches.
 
 3. Now we can update our `src/views/auth/Register.jsx` component. To display error messages is pretty straightforward now.
 
@@ -191,7 +191,7 @@ function Register() {
 export default Register
 ```
 
-Here we imported `ValidationError` component.
+Here we imported the `ValidationError` component.
 
 ```jsx
 import ValidationError from '@/components/ValidationError'
@@ -203,7 +203,7 @@ Unpacked errors state from useAuth hook.
 const { register, errors } = useAuth()
 ```
 
-And added `ValidationError` component after each input value by passing `errors` state and field name which matches keys from API response.
+And added the `ValidationError` component after each input value by passing the `errors` state and field name which matches keys from the API response.
 
 ```jsx
 <ValidationError errors={ errors } field="name" />

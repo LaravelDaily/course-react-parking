@@ -84,7 +84,7 @@ function ActiveParkings() {
 export default ActiveParkings
 ```
 
-The `getActiveParkings()` function will retrieve the list of currently active parkings and update `parkings` state. The `useEffect` hook will call `getActiveParkings()` when component is mounted.
+The `getActiveParkings()` function will retrieve the list of currently active parkings and update the `parkings` state. The `useEffect` hook will call `getActiveParkings()` when the component is mounted.
 
 ```jsx
 const [parkings, setParkings] = useState([])
@@ -102,7 +102,7 @@ async function getActiveParkings({ signal } = {}) {
 }
 ```
 
-After `setParkings(response.data.data)` call `parkings` state will have the following structure returned from API.
+After the `setParkings(response.data.data)` call `parkings` state will have the following structure returned from API.
 
 ```json
 [

@@ -1,10 +1,10 @@
 # Lesson 15 - Edit vehicle
 
-In this lesson, we will incorporate an edit form into the vehicles CRUD operation. This form will be similar to the create form, except it will have a different URL `/vehicles/:id/edit`. The data of a specific vehicle will be retrieved from the API using the `:id` URL parameter.
+In this lesson, we will incorporate an edit form into the vehicle's CRUD operation. This form will be similar to the create form, except it will have a different URL `/vehicles/:id/edit`. The data of a specific vehicle will be retrieved from the API using the `:id` URL parameter.
 
 ![Update vehicle](assets/update-vehicle.png)
 
-1. Update `src/hooks/useVehicle.jsx` hook with the following content.
+1. Update the `src/hooks/useVehicle.jsx` hook with the following content.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -76,7 +76,7 @@ In the `src/hooks/useVehicle.jsx` hook, we have two additional methods:
 -   `getVehicle` - This retrieves data for a specific vehicle and updates the form fields to be edited. It takes the `id` of the vehicle as a parameter and, if needed, a signal from an AbortController.
 
 
-`useVehicle` hook now takes an optional parameter `id` with a default value of `null`.
+The `useVehicle` hook now takes an optional parameter `id` with a default value of `null`.
 
 ```jsx
 export function useVehicle(id = null) {
@@ -94,9 +94,9 @@ useEffect(() => {
 }, [id])
 ```
 
-Note that we have defined `[id]` on `useEffect`'s dependencies. In case you decide to change id parameter programmatically vehicle data will be re-fetched.
+Note that we have defined `[id]` on `useEffect`'s dependencies. In case you decide to change the id parameter programmatically vehicle data will be re-fetched.
 
-And to return statement was added `updateVehicle` function.
+And to return the statement was added `updateVehicle` function.
 
 ```jsx
 return {
@@ -195,7 +195,7 @@ function EditVehicle() {
 export default EditVehicle
 ```
 
-3. Define named route `vehicles.edit` in `src/routes/index.jsx` file.
+3. Define the named route `vehicles.edit` in the `src/routes/index.jsx` file.
 
 ```jsx
 const routeNames = {
@@ -211,7 +211,7 @@ const routeNames = {
 }
 ```
 
-4. Import `EditVehicle` component and declare route for that component in `src/main.jsx` file.
+4. Import the `EditVehicle` component and declare the route for that component in the `src/main.jsx` file.
 
 ```jsx
 import EditVehicle from '@/views/vehicles/EditVehicle'
@@ -221,7 +221,7 @@ import EditVehicle from '@/views/vehicles/EditVehicle'
 <Route path={ route('vehicles.edit') } element={<EditVehicle />} />
 ```
 
-Full content looks like this:
+The full content looks like this:
 
 ```jsx
 import React from 'react'
@@ -281,9 +281,9 @@ Very often we will need to map routes with the given pattern to the same compone
 
 Now URLs like `/vehicles/1/edit` and `/vehicles/3/edit` will both map to the same route.
 
-A param is denoted by a colon `:`. When a route is matched, the value of its params will be exposed as `params.id` in `VehicleEdit` component.
+A param is denoted by a colon `:`. When a route is matched, the value of its params will be exposed as `params.id` in the `VehicleEdit` component.
 
-To access route parameters we need to import `useParams` hook.
+To access route parameters we need to import the `useParams` hook.
 
 ```jsx
 import { useNavigate, useParams } from 'react-router-dom'
@@ -319,7 +319,7 @@ To
 
 It is important to note that when calling the `route` function, we pass an additional parameter `id` along with `vehicle.id`. This replaces the `:id` portion in our path with the actual id of the vehicle that we want to edit.
 
-Full contens of this file look like this.
+The full contents of this file look like this.
 
 ```jsx
 import { Link } from 'react-router-dom'

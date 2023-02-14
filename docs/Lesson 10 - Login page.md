@@ -4,11 +4,11 @@ Developing a login page has become a straightforward task, as we have already es
 
 ![Login page](assets/login-page.png)
 
-When user logs in we want him to be redirected to active parking list, so let's create new empty component for this purpose, we will implement active parking list later.
+When a user logs in we want him to be redirected to the active parking list, so let's create a new empty component for this purpose, we will implement the active parking list later.
 
 ![Login redirect](assets/login-redirect.png)
 
-1. Create new `src/views/parkings/ActiveParkings.jsx` component.
+1. Create a new `src/views/parkings/ActiveParkings.jsx` component.
 
 ```jsx
 function ActiveParkings() {
@@ -18,7 +18,7 @@ function ActiveParkings() {
 export default ActiveParkings
 ```
 
-2. Add new named route `'parkings.active': '/parkings/active'` to `src/routes/index.jsx` file.
+2. Add a new named route `'parkings.active': '/parkings/active'` to the `src/routes/index.jsx` file.
 
 ```jsx
 const routeNames = {
@@ -30,7 +30,7 @@ const routeNames = {
 }
 ```
 
-3. Define new route for React Router in `src/main.jsx` file.
+3. Define a new route for React Router in the `src/main.jsx` file.
 
 ```jsx
 import ActiveParkings from '@/views/parkings/ActiveParkings'
@@ -40,7 +40,7 @@ import ActiveParkings from '@/views/parkings/ActiveParkings'
 <Route path={ route('parkings.active') } element={<ActiveParkings />} />
 ```
 
-`src/main.jsx` file now should look like this.
+The `src/main.jsx` file now should look like this.
 
 ```jsx
 import React from 'react'
@@ -78,7 +78,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-4. Update `leftAuthLinks` function in `src/App.jsx` function by adding navigation link to `parkings.active` route for authenticated users before `vehicles.index`.
+4. Update the `leftAuthLinks` function in the `src/App.jsx` function by adding a navigation link to the `parkings.active` route for authenticated users before `vehicles.index`.
 
 ```jsx
 function leftAuthLinks() {
@@ -93,7 +93,7 @@ function leftAuthLinks() {
 }
 ```
 
-5. Extend `src/hooks/useAuth.jsx` hook by adding new function to send login request.
+5. Extend the `src/hooks/useAuth.jsx` hook by adding a new function to send login requests.
 
 ```jsx
 async function login(data) {
@@ -114,15 +114,15 @@ async function login(data) {
 }
 ```
 
-It is almost identical to `register` function, and the structure was explained in previous lessons. Now it has different `axios.post()` URL.
+It is almost identical to the `register` function, and the structure was explained in previous lessons. Now it has a different `axios.post()` URL.
 
-And add it to return statement.
+And add it to the return statement.
 
 ```jsx
 return { register, login, errors, loading, isLoggedIn, logout }
 ```
 
-`src/hooks/useAuth.jsx` file now should have the following content.
+The `src/hooks/useAuth.jsx` file now should have the following content.
 
 ```jsx
 import { useState, useMemo, useEffect } from 'react'
@@ -192,7 +192,7 @@ export function useAuth() {
 }
 ```
 
-6. Update `src/views/auth/Login.jsx` component with the following content.
+6. Update the `src/views/auth/Login.jsx` component with the following content.
 
 ```jsx
 import { useState } from 'react'
@@ -279,13 +279,13 @@ function Login() {
 export default Login
 ```
 
-Here we have new state variable for Remember me checkbox. It has boolean value to determine checkbox is marked or not.
+Here we have a new state variable for Remember me checkbox. It has a boolean value to determine checkbox is marked or not.
 
 ```jsx
 const [remember, setRemember] = useState(false)
 ```
 
-Checkbox itself is defined like this:
+The checkbox itself is defined like this:
 
 ```jsx
 <input
@@ -299,9 +299,9 @@ Checkbox itself is defined like this:
 />
 ```
 
-This time we bind value to `checked` attribute and checkbox will be marked as checked if `remember` variable evaluates to true.
+This time we bind the value to the `checked` attribute and the checkbox will be marked as checked if the `remember` variable evaluates to true.
 
-When updating state value using `setRemember` function, it can accept setter function with `previous` value as an argument, then we just invert boolean value using `!previous`.
+When updating the state value using the `setRemember` function, it can accept the setter function with a `previous` value as an argument, then we just invert the boolean value using `!previous`.
 
 ```jsx
 onChange={ () => setRemember((previous) => !previous) }

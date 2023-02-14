@@ -83,13 +83,13 @@ function ParkingDetails() {
 export default ParkingDetails
 ```
 
-To get route `:id` parameter passed to this component via URL we need to import `useParams` hook first. Then we can unpack `id` value with this line to use later.
+To get the route `:id` parameter passed to this component via URL we need to import the `useParams` hook first. Then we can unpack the `id` value with this line to use later.
 
 ```jsx
 const { id } = useParams()
 ```
 
-The `getParking()` function will retrieve the particular parking order record and update `parking` state variable. The `useEffect` hook will call `getParking()` when component is mounted by passing `id` route parameter.
+The `getParking()` function will retrieve the particular parking order record and update the `parking` state variable. The `useEffect` hook will call `getParking()` when the component is mounted by passing the `id` route parameter.
 
 ```jsx
 useEffect(() => {
@@ -105,13 +105,13 @@ async function getParking(id, { signal } = {}) {
 }
 ```
 
-When initializing `parking` state we have set its default value to null.
+When initializing the `parking` state we have set its default value to null.
 
 ```jsx
 const [parking, setParking] = useState(null)
 ```
 
-While there's no data retrieved yet when component is mounted we want to hide the whole card. This can be done by using AND `&&` operator. Empty object doesn't satisfy this condition because it always evaluates as true.
+While there's no data retrieved yet when the component is mounted we want to hide the whole card. This can be done by using AND `&&` operator. The empty object doesn't satisfy this condition because it always evaluates as true.
 
 ```jsx
 return (parking &&
@@ -122,7 +122,7 @@ return (parking &&
 ```
 
 
-2. Update `src/routes/index.jsx` by adding `parkings.show` named route. Full content if this file now should look like this.
+2. Update `src/routes/index.jsx` by adding `parkings.show` named route. The full content of this file now should look like this.
 
 ```jsx
 const routeNames = {
@@ -155,7 +155,7 @@ function route(name, params = {}) {
 export { route }
 ```
 
-3. Import newly created component and define route for that component in `src/main.jsx` file.
+3. Import the newly created component and define a route for that component in the `src/main.jsx` file.
 
 ```jsx
 import ParkingDetails from '@/views/parkings/ParkingDetails'
@@ -217,7 +217,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-4. And finally update `src/views/parkings/ParkingHistory.jsx` component.
+4. And finally update the `src/views/parkings/ParkingHistory.jsx` component.
 
 Import `Link` and `route`.
 

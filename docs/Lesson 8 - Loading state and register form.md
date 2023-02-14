@@ -43,7 +43,7 @@ export default IconSpinner
 
 This component consists of an SVG icon and some TailwindCSS classes. `animate-spin` class applies persistent rotation animation on the icon.
 
-2. Let's update `src/hooks/useAuth.jsx` hook by adding loading state.
+2. Let's update the `src/hooks/useAuth.jsx` hook by adding a loading state.
 
 ```jsx
 import { useState } from 'react'
@@ -75,19 +75,19 @@ export function useAuth() {
 }
 ```
 
-In the beginning of `register` function we call `setLoading(true)` to update state. In `finally()` block we set loading state back to false. `finally()` will be called always, even if request failed.
+At the beginning of the `register` function, we call `setLoading(true)` to update the state. In the `finally()` block we set the loading state back to false. `finally()` will be called always, even if the request failed.
 
-And added `loading` to return statement.
+And added `loading` to the return statement.
 
-3. Now we can do final changes to `src/views/auth/Register.jsx` component.
+3. Now we can do the final changes to the `src/views/auth/Register.jsx` component.
 
-Import `IconSpinner` component.
+Import the `IconSpinner` component.
 
 ```jsx
 import IconSpinner from '@/components/IconSpinner'
 ```
 
-Unpack `loading` state from `useAuth` hook.
+Unpack the `loading` state from the `useAuth` hook.
 
 ```jsx
 const { register, errors, loading } = useAuth()
@@ -102,9 +102,9 @@ Add disabled property to every input field.
 />
 ```
 
-`disabled` property will be applied to input tags only if `loading` state evaluates to true.
+The `disabled` property will be applied to input tags only if the `loading` state evaluates to true.
 
-Also update the button.
+Also, update the button.
 
 ```jsx
 <button type="submit" className="btn btn-primary" disabled={ loading }>
@@ -113,7 +113,7 @@ Also update the button.
 </button>
 ```
 
-Your components will often need to display different things depending on different conditions. In our case to display `IconSpinner` only when loading state is true, we can use AND operator `&&`. This is common shortcut inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise**.
+Your components will often need to display different things depending on different conditions. In our case to display `IconSpinner` only when the loading state is true, we can use AND operator `&&`. This is a common shortcut inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise**.
 
 Currently our `Register` component `src/views/auth/Register.jsx` should look like this.
 

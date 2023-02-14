@@ -1,10 +1,10 @@
 # Lesson 4 - Named routes
 
-As you already noticed, React Router doesn't have a centralized route config, so there's nothing to name. React Router provides the correct primitives and lets the community create higher level APIs around them if needed.
+As you already noticed, React Router doesn't have a centralized route config, so there's nothing to name. React Router provides the correct primitives and lets the community create higher-level APIs around them if needed.
 
 This is exactly what we are going to do in this lesson.
 
-1. Create new file `src/routes/index.jsx`.
+1. Create a new file `src/routes/index.jsx`.
 
 ```jsx
 const routeNames = {
@@ -27,11 +27,11 @@ function route(name, params = {}) {
 export { route }
 ```
 
-The constant `routeNames` is going to hold our route name as key, and route url as value.
+The constant `routeNames` is going to hold our route name as the key, and route URL as the value.
 
-Helper function `route()` will act in the same way as Laravel's `route()` function. First argument is going to accept the route name. Second argument will accept route parameters and then return the url.
+Helper function `route()` will act in the same way as Laravel's `route()` function. The first argument is going to accept the route name. The second argument will accept route parameters and then return the URL.
 
-2. Now update the `src/main.jsx` file with following content.
+2. Now update the `src/main.jsx` file with the following content.
 
 ```jsx
 import React from 'react'
@@ -57,15 +57,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-We imported our helper function `route()` and are able to use it like this.
+We imported our helper function `route()` and can use it like this.
 
 ```jsx
 <Route path={ route('register') } element={<Register />} />
 ```
 
-> Note that JavaScript is case-sensitive language. `Route` and `route` have two completely different identities.
+> Note that JavaScript is a case-sensitive language. `Route` and `route` have two completely different identities.
 
-3. We also would like to use `<NavLink>` in same way. To have properties in our component first we need to install `prop-types` package.
+3. We also would like to use `<NavLink>` in the same way. To have properties in our component first we need to install the `prop-types` package.
 
 ```shell
 npm install prop-types --save
@@ -73,7 +73,7 @@ npm install prop-types --save
 
 > `React.PropTypes` has moved into a different package since React v15.5.
 
-Now it is time to create new component `src/components/NamedLink.jsx` to wrap that functionality inside.
+Now it is time to create a new component `src/components/NamedLink.jsx` to wrap that functionality inside.
 
 ```jsx
 import PropTypes from 'prop-types'
@@ -119,8 +119,7 @@ import NamedLink from '@/components/NamedLink'
 </NamedLink>
 ```
 
-
-4. Finally update `src/App.jsx` file with the following content.
+4. Finally update the `src/App.jsx` file with the following content.
 
 ```jsx
 import { Outlet } from 'react-router-dom'
@@ -163,4 +162,4 @@ function App() {
 export default App
 ```
 
-Having custom components has huge benefits. Code looks more clean, components are reusable, reduces amount of places to update if changes are needed. For example now you just need to update `NamedLink` if you want to display all links in different color.
+Having custom components has huge benefits. Code looks cleaner, components are reusable, and reduces the number of places to update if changes are needed. For example, now you just need to update `NamedLink` if you want to display all links in a different color.

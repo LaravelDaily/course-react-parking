@@ -4,7 +4,7 @@ Let's keep building the client software by adding more functionality. In this le
 
 ![Edit profile page](assets/edit-profile-page.png)
 
-1. First let's write our logic for profile that we can later use in profile view. Create new `src/hooks/useProfile.jsx` hook with following content.
+1. First let's write our logic for a profile that we can later use in the profile view. Create a new `src/hooks/useProfile.jsx` hook with the following content.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -51,7 +51,7 @@ export function useProfile() {
 }
 ```
 
-It has similar structure like `useAuth` with `errors` and `loading` state. To fetch user profile data we have `getProfile` function.
+It has a similar structure to `useAuth` with `errors` and `loading` states. To fetch user profile data we have the `getProfile` function.
 
 ```jsx
 async function getProfile({ signal } = {}) {
@@ -64,7 +64,7 @@ async function getProfile({ signal } = {}) {
 }
 ```
 
-Response with profile data will be stored in `data` state variable.
+Response with profile data will be stored in the `data` state variable.
 
 ```jsx
 useEffect(() => {
@@ -104,7 +104,7 @@ controller.abort();
 
 > Note that the AbortController API is relatively new and is not yet supported by all browsers, so you might need to use a polyfill or check for support before using it in your code.
 
-So in our use case, Axios library does accept that abort signal so we pass it to `getProfile` function. It is useful when `useEffect` is trigerred more than once, so previous requests will be aborted. That way we can avoid race condition in this scenario:
+So in our use case, the Axios library does accept that abort signal so we pass it to the `getProfile` function. It is useful when `useEffect` is triggered more than once, so previous requests will be aborted. That way we can avoid race conditions in this scenario:
 
 ```
 1st request - takes 150ms
@@ -112,11 +112,11 @@ So in our use case, Axios library does accept that abort signal so we pass it to
 3rd request - takes 100ms
 ```
 
-Without AbortController we can end up in a situation where we have data not from the latest request, because 1st request finished last, and data we got from 2nd and 3rd request will be overwritten with the older one.
+Without AbortController we can end up in a situation where we have data not from the latest request because 1st request finished last, and the data we got from 2nd and 3rd requests will be overwritten with the older one.
 
-The `useEffect` hook returns a cleanup function that is called when the component that uses the hook is unmounted or when the effect is re-run with a different dependencies. The cleanup function allows you to undo the changes made in the effect.
+The `useEffect` hook returns a cleanup function that is called when the component that uses the hook is unmounted or when the effect is re-run with different dependencies. The cleanup function allows you to undo the changes made in the effect.
 
-In our case we cancel previous request like that:
+In our case we cancel the previous request like that:
 
 ```jsx
 return () => controller.abort()
@@ -134,21 +134,21 @@ This time we return an array instead of an object, this is useful when don't wan
 const [profile, updateProfile] = useProfile()
 ```
 
-Profile data, errors and loading state now can be access like this `profile.data`, `profile.errors` etc. Very similar to `useState` in some way, except it wraps a lot more logic for our application.
+Profile data, errors, and loading state now can be accessed like this `profile.data`, `profile.errors`, etc. Very similar to `useState` in some way, except it wraps a lot more logic for our application.
 
-One more new thing we have there is state variable `status`:
+One more new thing we have here is the state variable `status`:
 
 ```jsx
 const [status, setStatus] = useState('')
 ```
 
-It will be used to display success message after successfuly updating profile information by calling `setStatus` in `updateProfile` function:
+It will be used to display a success message after successfully updating profile information by calling `setStatus` in the `updateProfile` function:
 
 ```jsx
 setStatus('Profile has been updated.')
 ```
 
-2. Create a new `src/views/profile/EditProfile.jsx` component with following content.
+2. Create a new `src/views/profile/EditProfile.jsx` component with the following content.
 
 ```jsx
 import { useProfile } from '@/hooks/useProfile'
@@ -221,27 +221,27 @@ function EditProfile() {
 export default EditProfile
 ```
 
-Now as mentioned before, we can consume `useProfile` hook like this:
+Now as mentioned before, we can consume the `useProfile` hook like this:
 
 ```jsx
 const [profile, updateProfile] = useProfile()
 ```
 
-Note that this time we have different `value` property and `onChange` attribute on input fields.
+Note that this time we have different `value` properties and `onChange` handlers on input fields.
 
-While there is no data fetched yet, we can use null coalescing operator to avoid `... is undefined` errors. This value will be updated automatically once request is resolved.
+While there is no data fetched yet, we can use the null coalescing operator to avoid `... is undefined` errors. This value will be updated automatically once the request is resolved.
 
 ```jsx
 value={ profile.data.name ?? '' }
 ```
 
-To update profile we call `profile.setData` function, and pass a new object unpacking all profile data using `...profile.data` and overwriting key with new value `name: event.target.value`. It is important to unpack first.
+To update the profile we call the `profile.setData` function, and pass a new object unpacking all profile data using `...profile.data` and overwriting the key with the new value `name: event.target.value`. It is important to unpack first.
 
 ```jsx
 onChange={ event => profile.setData({ ...profile.data, name: event.target.value }) }
 ```
 
-Success message is displayed by using same logic we used for `IconSpinner`, if expression on left evaluates to true then content after AND `&&` operator will be rendered, otherwise it will render nothing.
+A success message is displayed by using the same logic we used for `IconSpinner`, if the expression on the left evaluates to true then content after AND `&&` operator will be rendered, otherwise, it will render nothing.
 
 ```jsx
 { profile.status &&
@@ -251,7 +251,7 @@ Success message is displayed by using same logic we used for `IconSpinner`, if e
 }
 ```
 
-3. Update named routes in `src/routes/index.jsx` file. Full content of this file now looks as follows.
+3. Update named routes in the `src/routes/index.jsx` file. The full content of this file now looks as follows.
 
 ```jsx
 const routeNames = {
@@ -278,7 +278,7 @@ function route(name, params = {}) {
 export { route }
 ```
 
-4. Define component with `profile.edit` route in `src/main.jsx`. Full file should have the following content.
+4. Define the component with the `profile.edit` route in `src/main.jsx`. The full file should have the following content.
 
 ```jsx
 import React from 'react'
@@ -318,7 +318,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-5. And finally add a link to profile edit component in `rightAuthLinks` function on `src/App.jsx` file. File should have the following content.
+5. And finally add a link to the profile edit component in the `rightAuthLinks` function on the `src/App.jsx` file. The file should have the following content.
 
 ```jsx
 import { Outlet } from 'react-router-dom'

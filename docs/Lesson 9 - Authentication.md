@@ -11,7 +11,7 @@ In this lesson, we will focus on implementing authentication, which is a crucial
 
 ![Auth logout](assets/auth-logout.png)
 
-1. Create new dummy component `src/views/auth/Login.jsx`.
+1. Create a new dummy component `src/views/auth/Login.jsx`.
 
 ```jsx
 function Login() {
@@ -21,7 +21,7 @@ function Login() {
 export default Login
 ```
 
-2. Declare named route to login page in `src/routes/index.jsx`. We chose to put it after register route.
+2. Declare the named route to the login page in `src/routes/index.jsx`. We chose to put it after the `register` route.
 
 ```jsx
 const routeNames = {
@@ -57,7 +57,7 @@ function route(name, params = {}) {
 export { route }
 ```
 
-3. Import login component and define route in `src/main.jsx` file.
+3. Import the login component and define the route in the `src/main.jsx` file.
 
 ```jsx
 import Login from '@/views/auth/Login'
@@ -103,7 +103,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-4. To work with `localStorage` we are going to need the `react-use-storage` package to store token in the client application.
+4. To work with `localStorage` we are going to need the `react-use-storage` package to store the token in the client application.
 
 Enter the following command in your shell.
 
@@ -111,7 +111,7 @@ Enter the following command in your shell.
 npm install react-use-storage --save
 ```
 
-5. Update `src/hooks/useAuth.jsx` hook with the following content.
+5. Update the `src/hooks/useAuth.jsx` hook with the following content.
 
 ```jsx
 import { useState, useMemo, useEffect } from 'react'
@@ -168,19 +168,19 @@ Now we will go through what is new in this hook.
 
 ### Local Storage
 
-We imported `useLocalStorage` hook from `react-use-storage` package.
+We imported the `useLocalStorage` hook from the `react-use-storage` package.
 
 ```jsx
 import { useLocalStorage } from 'react-use-storage'
 ```
 
-Then we can define new state variable `accessToken` and two more methods to manage that state `setAccessToken` along `removeAccessToken`. This is different from `useState` because it is persistent in browser's `localStorage`, and value is kept even if you close the browser tab.
+Then we can define a new state variable `accessToken` and two more methods to manage that state, `setAccessToken` along with `removeAccessToken`. This is different from `useState` because it is persistent in the browser's `localStorage`, and the value is kept even if you close the browser tab.
 
 ```jsx
 const [accessToken, setAccessToken, removeAccessToken] = useLocalStorage('access_token', '')
 ```
 
-In `register()` function we save access token from the response to `localStorage` by calling `setAccessToken()`.
+In the `register()` function we save the access token from the response to `localStorage` by calling `setAccessToken()`.
 
 ```jsx
 .then((response) => {
@@ -191,7 +191,7 @@ In `register()` function we save access token from the response to `localStorage
 
 ### Side effects and Authorization header update
 
-When token is stored, we have a side effect, that means we want to update `Authorization` header for axios so our requests now can call protected API routes. This is done with imported `useEffect()` hook from `react`.
+When the token is stored, we have a side effect, which means we want to update the `Authorization` header for axios so our requests now can call protected API routes. This is done with an imported `useEffect()` hook from `react`.
 
 ```jsx
 useEffect(() => {
@@ -201,7 +201,7 @@ useEffect(() => {
 }, [accessToken])
 ```
 
-`useEffect` is a React Hook that lets you synchronize a component with an external system when you need to "step out" of your React code. This includes browser APIs, third-party widgets, network, and so on.
+`useEffect` is a React Hook that lets you synchronize a component with an external system when you need to "step out" of your React code. This includes browser APIs, third-party widgets, networks, and so on.
 
 It accepts two parameters `useEffect(setup, dependencies?)`.
 
@@ -231,18 +231,18 @@ So we have declared `accessToken` as our dependency, and if it evaluates to true
 
 ### Auth status and memoization
 
-To display and hide navigation links we need to know if user is logged in. We decide that depending if token present evaluates to true.
+To display and hide navigation links we need to know if a user is logged in. We decide that depending if the token present evaluates to true.
 
 ```jsx
 const isLoggedIn = useMemo(() => !!accessToken, [accessToken])
 ```
 
-For this purpose we use `useMemo` hook, it let's us cache the result of calculation. Value returned by anonymous function passed to `useMemo` is memoized and React returns same value between rerenders if dependencies declared in array as a second argument have not changed. It will be updated only if token value changes.
+For this purpose, we use the `useMemo` hook, which lets us cache the result of the calculation. The value returned by the anonymous function passed to `useMemo` is memoized and React returns the same value between rerenders if dependencies declared in the array as a second argument have not changed. It will be updated only if the token value changes.
 
-> More information on useMemo can be found there:
+> More information on useMemo can be found here:
 > - [useMemo](https://beta.reactjs.org/reference/react/useMemo)
 
-Last function declared is `logout`. Request to delete current token in use from server will be sent. Then token is removed from the client itself, and user is redirected to login page.
+The last function declared is `logout`. A request to delete the current token in use from the server will be sent. Then the token is removed from the client itself, and the user is redirected to the login page.
 
 ```jsx
 async function logout(force = false) {
@@ -255,9 +255,9 @@ async function logout(force = false) {
 }
 ```
 
-If Axios request fails with 401 Unauthenticated error, we call this function with force flag, that means token is already invalid and we do not need to send that request, otherwise we will be cought in an infinite loop.
+If Axios request fails with 401 Unauthenticated error, we call this function with force flag, which means the token is already invalid and we do not need to send that request, otherwise, we will be caught in an infinite loop.
 
-Finally `isLoggedIn` and `logout` are added to return statement.
+Finally, `isLoggedIn` and `logout` are added to the return statement.
 
 ```jsx
 return { register, errors, loading, isLoggedIn, logout }
@@ -348,7 +348,7 @@ function App() {
 export default App
 ```
 
-Here we import `useAuth` in our main `src/App.jsx` app layout to be able display/hide menu items and logout.
+Here we import `useAuth` in our main `src/App.jsx` app layout to be able to display/hide menu items and logout.
 
 ```jsx
 import { useAuth } from '@/hooks/useAuth'
@@ -360,7 +360,7 @@ const { isLoggedIn, logout } = useAuth()
 
 ### Axios interceptor
 
-To intercept every response received by Axios library we need to define an interceptor. If request was unauthenticated it will call `logout` function. Access token will be detroyed and user will see login page.
+To intercept every response received by the Axios library we need to define an interceptor. If the request was unauthenticated it will call the `logout` function. The access token will be destroyed and the user will see a login page.
 
 ```jsx
 axios.interceptors.response.use(
@@ -382,7 +382,7 @@ In JSX we can use conditional rendering using ternary operators `? :`. To make c
 { isLoggedIn ? rightAuthLinks() : rightGuestLinks() }
 ```
 
-In our case one of the functions looks like this.
+In our case, one of the functions looks like this.
 
 ```jsx
 function rightGuestLinks() {
@@ -397,13 +397,13 @@ function rightGuestLinks() {
 }
 ```
 
-The return statement of a component must always consist of a single element. Due to this limitation, whenever multiple elements need to be returned from a component, a wrapper element must be created. This is where React Fragment comes in. You can see them as an empty tags `<>` `</>`.
+The return statement of a component must always consist of a single element. Due to this limitation, whenever multiple elements need to be returned from a component, a wrapper element must be created. This is where React Fragment comes in. You can see them as empty tags `<>` `</>`.
 
 With React Fragments, the extra wrapper element that was previously required to render multiple elements from a component can be eliminated. This allows multiple elements to be returned without being contained in a wrapper element.
 
 ### Logout button
 
-In `rightAuthLinks` function we have button with `onClick` handler to call logout function.
+In the `rightAuthLinks` function, we have a button with an `onClick` handler to call the logout function.
 
 ```jsx
 function rightAuthLinks() {

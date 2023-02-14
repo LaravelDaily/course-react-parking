@@ -1,12 +1,12 @@
 # Lesson 14 - Vehicles list
 
-Our objective for this lesson should be to display a list of the user's cars vehicles after a new vehicle has been added to their account.
+Our objective for this lesson should be to display a list of the user's vehicles after a new vehicle has been added to their account.
 
 ![Vehicles list](assets/vehicles-list.png)
 
 1. Create new `src/hooks/useVehicles.jsx` hook.
 
-It will fetch vehicle data automatically using `useEffect` like we did with profile.
+It will fetch vehicle data automatically using `useEffect` as we did with the profile.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -30,9 +30,9 @@ export function useVehicles() {
 }
 ```
 
-All what we need to do now is just grab `vehicles` array and display data returned from API.
+All we need to do now is just grab the `vehicles` array and display data returned from API.
 
-2. Update `src/views/vehicles/VehiclesList.jsx` component with the following content.
+2. Update the `src/views/vehicles/VehiclesList.jsx` component with the following content.
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -93,7 +93,7 @@ We will often need to display multiple similar components from a collection of d
 { data.length > 0 && data.map(o => <div>{ o }</div>) }
 ```
 
-In our case we iterate over vehicles and map them to a new array of JSX nodes which will be rendered.
+In our case, we iterate over vehicles and map them to a new array of JSX nodes which will be rendered.
 
 ```jsx
 { vehicles.length > 0 && vehicles.map(vehicle => {
@@ -113,11 +113,11 @@ To keep items in order we need to give each array item a `key` - a string or a n
 
 > JSX elements directly inside a `map()` call always need keys.
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. Keys must be unique.
+Keys tell React which array item each component corresponds to so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. Keys must be unique.
 
-Vehicle id is perfectly suitable for that.
+The vehicle id is perfectly suitable for that.
 
-To display value of an object we can use this syntax.
+To display the value of an object we can use this syntax.
 
 ```jsx
 { vehicle.plate_number }

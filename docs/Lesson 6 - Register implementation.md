@@ -1,12 +1,12 @@
 # Lesson 6 - Register implementation
 
-In this lesson we will implement form functionality to make a request to server, and if request was successful (user was registered) redirect to vehicles list page.
+In this lesson, we will implement form functionality to make a request to the server, and if the request was successful (the user was registered) redirect to the vehicles list page.
 
 ![Register success](assets/register-success.png)
 
 ![Register redirect](assets/register-redirect.png)
 
-1. First create a new `src/views/vehicles/VehiclesList.jsx` view for our future list. This is the page where user will be redirected after registration.
+1. First create a new `src/views/vehicles/VehiclesList.jsx` view for our future list. This is the page where the user will be redirected after registration.
 
 ```jsx
 function VehiclesList() {
@@ -16,7 +16,7 @@ function VehiclesList() {
 export default VehiclesList
 ```
 
-Add a new `vehicles.index` named route to `src/routes/index.jsx` file.
+Add a new `vehicles.index` named route to the `src/routes/index.jsx` file.
 
 ```jsx
 const routeNames = {
@@ -26,7 +26,7 @@ const routeNames = {
 }
 ```
 
-Define new route in `src/main.jsx` right after register route so the app can resolve `/vehicles` path to `<VehiclesList>` component.
+Define the new route in `src/main.jsx` right after the `register` route so the app can resolve the `/vehicles` path to the `<VehiclesList>` component.
 
 ```jsx
 import VehiclesList from '@/views/vehicles/VehiclesList'
@@ -37,7 +37,7 @@ import VehiclesList from '@/views/vehicles/VehiclesList'
 <Route path={ route('vehicles.index') } element={<VehiclesList />} />
 ```
 
-And add `<NamedLink>` to `vehicles.index` route in `src/App.jsx` file. File now should look like this.
+And add `<NamedLink>` to the `vehicles.index` route in the `src/App.jsx` file. The file now should look like this.
 
 ```jsx
 import { Outlet } from 'react-router-dom'
@@ -83,13 +83,13 @@ function App() {
 export default App
 ```
 
-2. Now to make requests from our register form we need to install the Axios library. Run this command in your shell.
+2. Now to make requests from our registration form we need to install the Axios library. Run this command in your shell.
 
 ```shell
 npm install axios --save
 ```
 
-Then we need to import and configure Axios in `src/main.jsx` file.
+Then we need to import and configure Axios in the `src/main.jsx` file.
 
 ```jsx
 import axios from "axios";
@@ -101,13 +101,13 @@ window.axios.defaults.withCredentials = true;
 window.axios.defaults.baseURL = "http://parkingapi.test/api/v1";
 ```
 
-We set `X-Requested-With` header to tell the server it is an XHR request, and it serves an additional purpose so the server must consent to CORS policies.
+We set the `X-Requested-With` header to tell the server it is an XHR request, and it serves an additional purpose so the server must consent to CORS policies.
 
 Option `window.axios.defaults.withCredentials = true;` tells the axios library to send the cookies along the request.
 
 The convenience option is `window.axios.defaults.baseURL = "http://parkingapi.test/api/v1";` so we can omit full URLs in our requests and just type in the relative path of the server's API endpoint.
 
-Now we have a setup for making requests to API. Content of `src/main.jsx` file looks like this.
+Now we have a setup for making requests to API. The content of the `src/main.jsx` file looks like this.
 
 ```jsx
 import React from 'react'
@@ -141,13 +141,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-3. React comes with several built-in Hooks like `useState`. Sometimes you'll wish that there was a Hook for some more specific purpose: for example to fetch data, hold loading state and errors. You might not find these Hooks in React, we can create our own Hooks for our application's needs.
+3. React comes with several built-in Hooks like `useState`. Sometimes you'll wish that there was a Hook for some more specific purpose: for example to fetch data, hold loading state, and errors. You might not find these Hooks in React, we can create Hooks for our application's needs.
 
-Custom hooks let us share stateful logic, but not state itself. Components using hooks don't have as much repetitive logic. When we extract logic into custom hooks, we can hide the gnarly details of how we deal with some external system or a browser API. The of components then expresses intent and not the implementation.
+Custom hooks let us share stateful logic, but not the state itself. Components using hooks don't have as much repetitive logic. When we extract logic into custom hooks, we can hide the gnarly details of how we deal with some external system or a browser API. The components then express intent and not the implementation.
 
 Hook names must start with `use` followed by a capital letter. So let's create our first hook `useAuth` which will implement logic related to our application's auth processes.
 
-Create new `src/hooks/useAuth.jsx` file with the following content.
+Create a new `src/hooks/useAuth.jsx` file with the following content.
 
 ```jsx
 import { useNavigate } from 'react-router-dom'
@@ -168,9 +168,9 @@ export function useAuth() {
 }
 ```
 
-Here we define `register` function to make a call to `http://parkingapi.test/api/v1/auth/register`. Remember we don't need to define full URL because we have baseURL set for Axios. If request is successful then we have another hook `useNavigate` from React Router to navigate us to `vehicles.index` route.
+Here we define the `register` function to make a call to `http://parkingapi.test/api/v1/auth/register`. Remember we don't need to define the full URL because we have baseURL set for Axios. If the request is successful then we have another hook `useNavigate` from React Router to navigate us to the `vehicles.index` route.
 
-`useAuth()` hook returns register function, so we can use that function in our `<Register>` component.
+The `useAuth()` hook returns the register function, so we can use that function in our `<Register>` component.
 
 4. Update the `src/views/auth/Register.jsx` component with the following content.
 
@@ -267,7 +267,7 @@ function Register() {
 export default Register
 ```
 
-Here we import `useAuth` hook and `register` function.
+Here we import the `useAuth` hook and `register` function.
 
 ```jsx
 import { useAuth } from '@/hooks/useAuth'
@@ -277,7 +277,7 @@ import { useAuth } from '@/hooks/useAuth'
 const { register } = useAuth()
 ```
 
-Then updated `handleSubmit()` function to call `register` function from `useAuth` hook.
+Then updated the `handleSubmit()` function to call the `register` function from the `useAuth` hook.
 
 ```jsx
 async function handleSubmit(event) {
@@ -297,7 +297,7 @@ setPassword('')
 setPasswordConfirmation('')
 ```
 
-Usually when you submit the form browser would automatically clear fields with `type="password"`, but because we are preventing default behavior this won't happen by default and we need to do that manually to retain the same functionality. This code will be always executed disregarding if the request resulted in success or error which is default behavior when posting form.
+Usually when you submit the form browser would automatically clear fields with `type="password"`, but because we are preventing default behavior this won't happen by default and we need to do that manually to retain the same functionality. This code will be always executed disregarding if the request resulted in success or error which is the default behavior when posting forms.
 
 After submitting the form the following response from the server will be returned:
 
@@ -305,7 +305,7 @@ After submitting the form the following response from the server will be returne
 { access_token: "118|CJv0t9yHJcPFsifkXyoMaiCJBpRyrmsXYDLENyAN" }
 ```
 
-And you will be redirected to `/vehicles` URL, but we still have few things missing.
+And you will be redirected to the `/vehicles` URL, but we still have a few things missing.
 
 - Register form has no validation if some data is incorrect and missing
 - When we register we don't save the token anywhere for protected API endpoints.

@@ -4,7 +4,7 @@ Time to create a form to allow users to start parking by choosing one of the veh
 
 ![Order parking](assets/order-parking.png)
 
-1. To start parking create a new `src/hooks/useParking.jsx` hook with `startParking` function which will submit vehicle and zone ids to API.
+1. To start parking create a new `src/hooks/useParking.jsx` hook with the `startParking` function which will submit vehicle and zone ids to API.
 
 ```jsx
 import { useState } from 'react'
@@ -31,7 +31,7 @@ export function useParking() {
 }
 ```
 
-2. Create a new `src/hooks/useZones.jsx` hook with `getZones` function. This will provide us with data about available parking zones to choose from.
+2. Create a new `src/hooks/useZones.jsx` hook with the `getZones` function. This will provide us with data about available parking zones to choose from.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -55,7 +55,7 @@ export function useZones() {
 }
 ```
 
-3. This is where it gets more interesting. Create new `src/views/parkings/OrderParking.jsx` component.
+3. This is where it gets more interesting. Create a new `src/views/parkings/OrderParking.jsx` component.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -167,7 +167,7 @@ const { zones } = useZones()
 const { vehicles } = useVehicles()
 ```
 
-`useParking` - provides us `errors`, `loading` state, and `startParking` function.
+`useParking` - provides us with `errors`, `loading` state, and `startParking` functions.
 `useZones` - gives us an array of `zones`, it fetches them automatically.
 `useVehicles` - provides us with an array of `vehicles`. We have created this in previous lessons. The whole reason to separate business logic into hooks is that we can later reuse it without the need to implement it once again.
 
@@ -178,7 +178,7 @@ const [vehicle_id, setVehicleId] = useState()
 const [zone_id, setZoneId] = useState()
 ```
 
-`<select>` dropdown has the following structure:
+The `<select>` dropdown has the following structure:
 
 ```jsx
 <select
@@ -195,13 +195,13 @@ const [zone_id, setZoneId] = useState()
 </select>
 ```
 
-It has the same `value` property like the `<input>` field to represent current state of `vehicle_id`. `onChange` handler will update the corresponding state variable when we choose the particular `<option>`.
+It has the same `value` property as the `<input>` field to represent the current state of `vehicle_id`. `onChange` handler will update the corresponding state variable when we choose the particular `<option>`.
 
-To display all options with vehicles available we iterate them using `vehicles.length > 0 && vehicles.map()` as we did in the vehicles index view. When using array method `map` we always need to define the `key` property with unique value to let JSX keep track of nodes.
+To display all options with vehicles available we iterate them using `vehicles.length > 0 && vehicles.map()` as we did in the vehicles index view. When using the array method `map` we always need to define the `key` property with a unique value to let JSX keep track of nodes.
 
 When we load the form none of our options will be selected by default and the default attribute `selected` doesn't work there.
 
-Initially `vehicle_id` and `zone_id` have undefined value, but we do not know what ids are available, so in order to do that we need to update `vehicle_id` and `zone_id` after we fetch the lists of `vehicles` and `zones`. This is done by using `useEffect` hook, `vehicles` are added to dependencies list, so when value changes it calls `setVehicleId` with the id from the first element. Same applies for `zones`.
+Initially `vehicle_id` and `zone_id` have an undefined value, but we do not know what ids are available, so in order to do that we need to update `vehicle_id` and `zone_id` after we fetch the lists of `vehicles` and `zones`. This is done by using the `useEffect` hook, `vehicles` are added to the dependencies list, so when the value changes it calls `setVehicleId` with the id from the first element. The same applies to `zones`.
 
 ```jsx
 useEffect(() => setVehicleId(vehicles[0]?.id), [vehicles])
@@ -216,7 +216,7 @@ On the bottom of the form we have an additional `ValidationError` component with
 
 `general` errors are displayed when API returns errors not related to fields. For example, if you try to start parking while having one active on your vehicle.
 
-Finally we submit the form by calling `startParking` and providing and object with `vehicle_id` and `zone_id` as a parameter.
+Finally, we submit the form by calling `startParking` and providing an object with `vehicle_id` and `zone_id` as a parameter.
 
 ```jsx
 async function handleSubmit(event) {
@@ -248,7 +248,7 @@ return <option key={ zone.id } value={ zone.id }>
 
 `zone.price_per_hour` is returned in cents from the API. By dividing it by 100 it would give us a result of `1`. To always display decimal points we need to use the `toFixed()` function which is native JavaScript's method for integers and floats. How many decimal points to display is specified by a parameter, in our case, it is `toFixed(2)`. For the euro currency sign in HTML, there is a `&euro;` code.
 
-4. Add `parkings.create` route to `src/routes/index.jsx` file.
+4. Add the `parkings.create` route to the `src/routes/index.jsx` file.
 
 ```jsx
 const routeNames = {
@@ -265,7 +265,7 @@ const routeNames = {
 }
 ```
 
-5. Import `OrderParking` component and define route in `src/main.jsx` file.
+5. Import the `OrderParking` component and define the route in the `src/main.jsx` file.
 
 ```jsx
 import OrderParking from '@/views/parkings/OrderParking'
@@ -275,7 +275,7 @@ import OrderParking from '@/views/parkings/OrderParking'
 <Route path={ route('parkings.create') } element={<OrderParking />} />
 ```
 
-6. And finally update `src/views/parkings/ActiveParkings.jsx` component with the following content.
+6. And finally update the `src/views/parkings/ActiveParkings.jsx` component with the following content.
 
 ```jsx
 import { Link } from 'react-router-dom'
@@ -303,4 +303,4 @@ function ActiveParkings() {
 export default ActiveParkings
 ```
 
-Now we can select a vehicle, zone and start parking.
+Now we can select a vehicle, zone, and start parking.

@@ -1,10 +1,10 @@
 # Lesson 16 - Delete vehicle
 
-The final step in completing the vehicles CRUD operation is to implement the delete button functionality in the index view. This should be a quick and straightforward process.
+The final step in completing the vehicle's CRUD operation is to implement the delete button functionality in the index view. This should be a quick and straightforward process.
 
 1. Extend the `src/hooks/useVehicle.jsx` hook.
 
-Add new `destroyVehicle` function.
+Add a new `destroyVehicle` function.
 
 ```jsx
 async function destroyVehicle(vehicle) {
@@ -23,7 +23,7 @@ return {
 }
 ```
 
-Whole `src/hooks/useVehicle.jsx` file has the following content.
+The whole `src/hooks/useVehicle.jsx` file has the following content.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -94,13 +94,13 @@ export function useVehicle(id = null) {
 }
 ```
 
-2. Extend the `src/hooks/useVehicles.jsx` hook by exposing `getVehicles` function in the return statement, we need to call this function outside of the hook when we delete the vehicle record to re-fetch the list.
+2. Extend the `src/hooks/useVehicles.jsx` hook by exposing the `getVehicles` function in the return statement, we need to call this function outside of the hook when we delete the vehicle record to re-fetch the list.
 
 ```jsx
 return { vehicles, getVehicles }
 ```
 
-Whole `src/hooks/useVehicles.jsx` file has the following content.
+The whole `src/hooks/useVehicles.jsx` file has the following content.
 
 ```jsx
 import { useState, useEffect } from 'react'
@@ -126,7 +126,7 @@ export function useVehicles() {
 
 3. Update the `src/views/vehicles/VehiclesList.jsx` component as follows.
 
-Import `useVehicle` hook and destructure return contents to have `destroyVehicle` function in scope.
+Import the `useVehicle` hook and destructure return contents to have the `destroyVehicle` function in scope.
 
 ```jsx
 import { useVehicle } from '@/hooks/useVehicle'
@@ -136,7 +136,7 @@ import { useVehicle } from '@/hooks/useVehicle'
 const { destroyVehicle } = useVehicle()
 ```
 
-Do the same with `useVehicles` and `getVehicles` function.
+Do the same with the `useVehicles` and `getVehicles` functions.
 
 ```jsx
 const { vehicles, getVehicles } = useVehicles()
@@ -165,9 +165,9 @@ To
 </button>
 ```
 
-Here we just added `onClick` handler to the button. First to send a request to server to delete a vehicle, and re-fetch the whole vehicles list.
+Here we just added an `onClick` handler to the button. First, send a request to the server to delete a vehicle, and re-fetch the whole vehicles list.
 
-Full `src/views/vehicles/VehiclesList.jsx` file now should have the following content.
+The full `src/views/vehicles/VehiclesList.jsx` file now should have the following content.
 
 ```jsx
 import { Link } from 'react-router-dom'

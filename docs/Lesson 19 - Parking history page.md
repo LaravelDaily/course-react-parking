@@ -1,6 +1,6 @@
 # Lesson 19 - Parking history page
 
-Now when a parking is stopped, it simply disappears from the active parking list. The intention was to separate parking orders into "active" and "history" categories for convenience and clarity.
+Now when parking is stopped, it simply disappears from the active parking list. The intention was to separate parking orders into "active" and "history" categories for convenience and clarity.
 
 In this lesson, let's implement the list of parking history.
 
@@ -78,9 +78,9 @@ The `ParkingHistory` component is very similar to what we did in the previous le
 
 In this lesson, we have added a "view details" button, but it does not yet have an assigned `onClick` handler. This will be implemented in the next lesson.
 
-2. Add new named route `parkings.history` to named routes in `src/routes/index.jsx` file.
+2. Add a new named route `parkings.history` to named routes in the `src/routes/index.jsx` file.
 
-Full content of this file now should look like this.
+The full content of this file now should look like this.
 
 ```jsx
 const routeNames = {
@@ -112,7 +112,7 @@ function route(name, params = {}) {
 export { route }
 ```
 
-3. Import component and map route in `src/main.jsx` file.
+3. Import the component and map route in the `src/main.jsx` file.
 
 ```jsx
 import ParkingHistory from '@/views/parkings/ParkingHistory'
@@ -122,7 +122,7 @@ import ParkingHistory from '@/views/parkings/ParkingHistory'
 <Route path={ route('parkings.history') } element={<ParkingHistory />} />
 ```
 
-Whole file has the following content.
+The whole file has the following content.
 
 ```jsx
 import React from 'react'
@@ -172,7 +172,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-4. And insert a new link to `parkings.history` route in `leftAuthLinks` function on `src/App.jsx` file.
+4. And insert a new link to the `parkings.history` route in the `leftAuthLinks` function on the `src/App.jsx` file.
 
 ```jsx
 <NamedLink name="parkings.history">

@@ -7,11 +7,11 @@ It's time to add the change password feature for our logged-in users. This lesso
 Before we start implementing, let's first discuss why we can't have the password fields on the same profile page. While some websites or applications have this, it also brings up new issues:
 
 -   The idea of leaving the password fields blank to keep the same password can be confusing for users.
--   It can be misinterpreted as there being no password.
+-   It can be misinterpreted as there is no password.
 -   Displaying the fields as required can add to the confusion.
 -   It can be unclear how to mark the fields when they are all required if any of them is filled.
 -   If all fields are required, why do you need to change the password just to update the name?
--   Validating the submitted form on the backend becomes more complex and now has to handle both account details and password changes which we think are separate concerns.
+-   Validating the submitted form on the backend becomes more complex and now have to handle both account details and password changes which we think are separate concerns.
 
 Having a separate form specifically for changing passwords solves all of these problems and benefits both users and developers. With that in mind, let's implement the form.
 
@@ -144,7 +144,7 @@ function ChangePassword() {
 export default ChangePassword
 ```
 
-3. Add new `profile.change-password` named route to `src/routes/index.jsx` file.
+3. Add a new `profile.change-password` named route to the `src/routes/index.jsx` file.
 
 ```jsx
 const routeNames = {
@@ -158,7 +158,7 @@ const routeNames = {
 }
 ```
 
-4. Import `ChangePassword` component and bind route in `src/main.jsx` file.
+4. Import the `ChangePassword` component and bind the route in the `src/main.jsx` file.
 
 ```jsx
 import ChangePassword from '@/views/profile/ChangePassword'
@@ -168,7 +168,7 @@ import ChangePassword from '@/views/profile/ChangePassword'
 <Route path={ route('profile.change-password') } element={<ChangePassword />} />
 ```
 
-5. And finally add a link to change password view in `rightAuthLinks` function on `src/App.jsx` file.
+5. And finally add a link to change the password view in the `rightAuthLinks` function on the `src/App.jsx` file.
 
 ```jsx
 function rightAuthLinks() {

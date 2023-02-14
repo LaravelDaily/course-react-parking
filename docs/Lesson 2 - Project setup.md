@@ -1,6 +1,6 @@
 # Lesson 2 - Project setup
 
-Now we have a default app with basic counter implementation with sample code to see how state works in React. We don't need this basic scaffolding for our application and in addition we're going to use TailwindCSS to style application.
+Now we have a default app with basic counter implementation with sample code to see how the state works in React. We don't need this basic scaffolding for our application and in addition, we're going to use TailwindCSS to style the application.
 
 1. Remove unnecessary files
 
@@ -23,13 +23,13 @@ Install `tailwindcss` and its peer dependencies via npm.
 npm install -D tailwindcss postcss autoprefixer
 ```
 
-After installation run this command to publish initial TailwindCSS configuration.
+After installation run this command to publish the initial TailwindCSS configuration.
 
 ```
 npx tailwindcss init
 ```
 
-New `tailwind.config.cjs` file will be created in project root directory.
+A new `tailwind.config.cjs` file will be created in the project root directory.
 
 Now update this file to:
 
@@ -46,14 +46,14 @@ module.exports = {
 }
 ```
 
-Following changes were applied:
+The following changes were applied:
 
 - extended configuration to include more colors, so any setting will work out of the box to play around.
-- and added `'./src/**/*.jsx'` value to the content key so TailwindCSS will look at all React's `jsx` files in the `./src` folder for classes to compile.
+- and added the `'./src/**/*.jsx'` value to the content key so TailwindCSS will look at all React's `jsx` files in the `./src` folder for classes to compile.
 
-> More information how to configure TailwindCSS can be found in [official documentation](https://tailwindcss.com/docs/configuration).
+> More information on how to configure TailwindCSS can be found in [official documentation](https://tailwindcss.com/docs/configuration).
 
-Now manually create new `postcss.config.cjs` configuration file in project root directory with the following content.
+Now manually create a new `postcss.config.cjs` configuration file in the project root directory with the following content.
 
 ```js
 module.exports = {
@@ -64,7 +64,7 @@ module.exports = {
 }
 ```
 
-Create new `src/assets/main.css` file with our predefined css classes we are going to use for this demo project. Tailwind's `@apply` directive extracts repeated utility patterns to custom css classes, so instead of defining them every time on each element we basically "group" them.
+Create a new `src/assets/main.css` file with the predefined CSS classes we are going to use for this demo project. Tailwind's `@apply` directive extracts repeated utility patterns to custom CSS classes, so instead of defining them every time on each element we basically "group" them.
 
 ```
 @tailwind base;
@@ -136,11 +136,11 @@ export default defineConfig({
 })
 ```
 
-Here we imported `fileURLToPath` function from node and defined `resolve.alias` for our components so we can use `@` alias to define global paths when importing components instead of relative ones. This makes life easier if you later decide to move some component to different folder.
+Here we imported the `fileURLToPath` function from the node and defined `resolve.alias` for our components so we can use the `@` alias to define global paths when importing components instead of relative ones. This makes life easier if you later decide to move some components to different folders.
 
-4. After removing files not needed and Vite configuration update we also need to update existing project files to get rid of any dead references and test if our TailwindCSS works.
+4. After removing files not needed and the Vite configuration update we also need to update existing project files to get rid of any dead references and test if our TailwindCSS works.
 
-Update `src/App.jsx` file with the following content.
+Update the `src/App.jsx` file with the following content.
 
 ```jsx
 function App() {
@@ -159,7 +159,7 @@ function App() {
 export default App
 ```
 
-And update `src/main.jsx` file.
+And update the `src/main.jsx` file.
 
 ```jsx
 import React from 'react'
@@ -174,25 +174,25 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 )
 ```
 
-Now after restarting Vite and reloading page you should see this page with some simple styling.
+Now after restarting Vite and reloading the page you should see this page with some simple styling.
 
 ![Post setup](assets/post-setup.png)
 
 5. In this last step we are going to configure `eslint` as our linter for this project.
 
-> ℹ️ This step is optional, you can skip it and successfuly complete all course material without it.
+> ℹ️ This step is optional, you can skip it and complete all course material without it.
 
-ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs.
+ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, to make code more consistent and avoid bugs.
    
-This is especially useful if you are planning to work in team. There's a high chance that there will be some sort of tool to enforce specific code style and patterns.
+This is especially useful if you are planning to work in a team. There's a high chance that there will be some sort of tool to enforce specific code styles and patterns.
 
-Install eslint with react plugins to allow linter better understand the code with the following command.
+Install eslint with react plugins to allow the linter better understand the code with the following command.
 
 ```shell
 npm install -D eslint eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
 ```
 
-Create new file `.eslintrc.cjs` in project root directory.
+Create a new file `.eslintrc.cjs` in the project root directory.
 
 ```js
 /* eslint-env node */
@@ -236,9 +236,9 @@ module.exports = {
 }
 ```
 
-Modern editors can detect eslint presence in your project and will highlight important places automatically, but you can also do that manually from command line.
+Modern editors can detect eslint presence in your project and will highlight important places automatically, but you can also do that manually from the command line.
 
-To do that manually you need to update `scripts` section in your `package.json` file
+To do that manually you need to update the `scripts` section in your `package.json` file
 
 from:
 
