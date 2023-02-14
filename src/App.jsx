@@ -29,6 +29,9 @@ function App() {
       <NamedLink name="vehicles.index">
         Vehicles
       </NamedLink>
+      <NamedLink name="parkings.history">
+        History
+      </NamedLink>
     </>
   }
 
